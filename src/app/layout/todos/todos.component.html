@@ -1,0 +1,6 @@
+<app-todo-form (todoArrEvent)="recieveTodos($event)"></app-todo-form>
+<div class="todos-content" >
+
+  <app-todo *ngFor="let todo of todoArr" [todo]="todo"></app-todo>
+
+</div>

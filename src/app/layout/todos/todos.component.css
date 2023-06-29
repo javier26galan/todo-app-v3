@@ -1,0 +1,23 @@
+
+
+app-todo-form{
+  display:flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 3em;
+}
+
+app-todo{
+  display:flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 3em;
+}
+
+.todos-content{
+  display:flex;
+  justify-content:center;
+  align-content:center;
+  gap: 1em;
+  flex-wrap: wrap;
+}

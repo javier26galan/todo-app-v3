@@ -1,0 +1,11 @@
+<form class="todo-form" [formGroup]="form" (submit)="onSaveTodo()">
+  <mat-form-field color="accent">
+    <mat-label for="title">Title</mat-label>
+    <input matInput type="text" formControlName="title"/>
+  </mat-form-field>
+  <mat-form-field color="accent">
+    <mat-label>Content</mat-label>
+    <textarea matInput rows="4" formControlName="content"></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Save Todo</button>
+</form>
