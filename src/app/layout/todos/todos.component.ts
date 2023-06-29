@@ -10,7 +10,5 @@ export class TodosComponent {
 
   recieveTodos($event: any) {
     this.todoArr = $event;
-    console.log(this.todoArr);
-
   }
 }
