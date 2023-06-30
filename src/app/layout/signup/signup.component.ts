@@ -4,8 +4,10 @@ import {
   Validators,
   FormsModule,
   ReactiveFormsModule,
+  FormGroup,
 } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { SignupService } from './signup.service';
 
 @Component({
   selector: 'app-signup',
@@ -13,10 +15,32 @@ import { NgIf } from '@angular/common';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent {
+  constructor(public signupService: SignupService) {}
 
-
-  ngOnInit():void{
-
+  formSignup!: FormGroup;
+  ngOnInit(): void {
+    this.formSignup = new FormGroup({
+      userName: new FormControl(''),
+      email: new FormControl(''),
+      password: new FormControl(''),
+    });
   }
 
+  onSignup() {
+    if (this.formSignup.invalid) {
+      return;
+    } else {
+      console.log('onSign', {
+        userName: this.formSignup.value.userName,
+        email: this.formSignup.value.email,
+        password: this.formSignup.value.password,
+      });
+
+      this.signupService.postUser(
+        this.formSignup.value.userName,
+        this.formSignup.value.email,
+        this.formSignup.value.password
+      );
+    }
+  }
 }

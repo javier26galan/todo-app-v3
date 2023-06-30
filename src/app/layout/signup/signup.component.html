@@ -1,4 +1,4 @@
-<form class="todo-form">
+<form class="todo-form" [formGroup]="formSignup" (submit)="onSignup()">
   <mat-form-field color="accent">
     <mat-label for="title">Username</mat-label>
     <input matInput type="text" formControlName="userName" required/>
