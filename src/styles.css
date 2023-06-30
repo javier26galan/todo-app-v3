@@ -11,3 +11,14 @@ body {
   background-image: url("https://www.transparenttextures.com/patterns/escheresque.png");
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
+
+app-signup{
+  display:flex;
+  justify-content: center;
+  align-content: center;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  margin: -25px 0 0 -25px;
+}
+
