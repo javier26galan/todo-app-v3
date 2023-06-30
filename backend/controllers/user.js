@@ -1,5 +1,7 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
+require("dotenv").config()
 
 exports.createUser = async (req, res, next) => {
   const { userName, email, password } = req.body;
@@ -34,13 +36,20 @@ exports.userLogin = (req, res, next) => {
         return res.status(401).json({ message: "User did not exist" });
       }
       fetchedUser = user;
-      console.log(fetchedUser);
+      console.log("secreto",process.env.JWT_KEY);
       bcrypt.compare(req.body.password, fetchedUser.password).then((result) => {
-        console.log(result);
         if (result) {
-          res.status(200).json({message: "correct password"});
-        }else{
-          res.status(400).json({message: "Invalid password"})
+          const token = jwt.sign(
+            {
+              email: fetchedUser.email,
+              _id: fetchedUser._id,
+            },
+            process.env.JWT_KEY,
+            { expiresIn: "1h" }
+          );
+          res.status(200).json({ token: token, expiresIn: 36000, userId:fetchedUser._id });
+        } else {
+          res.status(400).json({ message: "Invalid password" });
         }
       });
     })

@@ -30,12 +30,6 @@ export class SignupComponent {
     if (this.formSignup.invalid) {
       return;
     } else {
-      console.log('onSign', {
-        userName: this.formSignup.value.userName,
-        email: this.formSignup.value.email,
-        password: this.formSignup.value.password,
-      });
-
       this.signupService.postUser(
         this.formSignup.value.userName,
         this.formSignup.value.email,

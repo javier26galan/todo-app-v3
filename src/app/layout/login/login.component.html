@@ -1,1 +1,12 @@
-<p>login works!</p>
+<form class="todo-form" [formGroup]="formLogin" (submit)="onLogin()">
+
+  <mat-form-field color="accent">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" required/>
+  </mat-form-field>
+  <mat-form-field color="accent">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password" required/>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Login</button>
+</form>

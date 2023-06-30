@@ -23,7 +23,7 @@ export class SignupService {
 
     this.http.post(BACKEND_URL, user).subscribe((response) => {
       console.log('sigupService response', response);
-      this.router.navigate(["/"])
+      this.router.navigate(["/login"])
     });
   };
 }

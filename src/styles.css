@@ -22,3 +22,13 @@ app-signup{
   margin: -25px 0 0 -25px;
 }
 
+app-login{
+  display:flex;
+  justify-content: center;
+  align-content: center;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  margin: -25px 0 0 -25px;
+}
+
