@@ -2,10 +2,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
+const userRoutes = require("./routes/user.js");
+
 const app = express();
 
 mongoose
-  .connect(`mongodb://127.0.0.1:27017`)
+  .connect(`mongodb://127.0.0.1:27017/todo-app-v3`)
   .then(() => {
     console.log("conected to database");
   })
@@ -14,7 +16,11 @@ mongoose
   });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+  })
+);
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -29,4 +35,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.listen(3000)
+app.use("/user", userRoutes);
+
+app.listen(3000);
