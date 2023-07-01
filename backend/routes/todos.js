@@ -6,10 +6,9 @@ const todosController = require("../controllers/todos.js");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  console.log("todos routes");
-});
-
-router.post("/create", todosController.createTodos);
+router.get("/:id", todosController.getTodos);
+router.post("/create", todosController.createTodo);
+router.put("/:id", todosController.updateTodo);
+router.delete("/:id", todosController.deleteTodo);
 
 module.exports = router;
