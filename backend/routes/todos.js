@@ -6,9 +6,9 @@ const todosController = require("../controllers/todos.js");
 
 const router = express.Router();
 
-router.get("/:id", todosController.getTodos);
-router.post("/create", todosController.createTodo);
-router.put("/:id", todosController.updateTodo);
-router.delete("/:id", todosController.deleteTodo);
+router.get("/:id", checkAuth, todosController.getTodos);
+router.post("/create", checkAuth, todosController.createTodo);
+router.put("/:id", checkAuth, todosController.updateTodo);
+router.delete("/:id", checkAuth, todosController.deleteTodo);
 
 module.exports = router;

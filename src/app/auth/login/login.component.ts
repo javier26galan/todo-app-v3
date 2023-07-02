@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { LoginService } from './login.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +8,7 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(public loginService: LoginService) {}
+  constructor(public authService: AuthService) {}
 
   formLogin!: FormGroup;
   ngOnInit(): void {
@@ -23,7 +23,7 @@ export class LoginComponent {
       return
     }else{
       const {email, password} = this.formLogin.value;
-      this.loginService.loginUser(email, password)
+      this.authService.loginUser(email, password)
     }
   }
 }

@@ -1,10 +1,13 @@
 <mat-toolbar color="primary" role="heading">
   <span>Todo App v-3</span>
   <span class="example-spacer"></span>
-  <button mat-raised-button color="accent" routerLink="/signup">
+  <button *ngIf="!userIsAuthenticated" mat-raised-button color="accent" routerLink="/signup">
    <span>Sign up</span>
  </button>
- <button mat-raised-button color="warn" routerLink="/login">
+ <button *ngIf="!userIsAuthenticated" mat-raised-button color="warn" routerLink="/login">
    <span>Login</span>
+ </button>
+ <button *ngIf="userIsAuthenticated" mat-raised-button color="warn" routerLink="/login">
+   <span>Logout</span>
  </button>
 </mat-toolbar>

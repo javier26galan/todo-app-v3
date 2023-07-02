@@ -7,7 +7,7 @@ import {
   FormGroup,
 } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { SignupService } from './signup.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +15,7 @@ import { SignupService } from './signup.service';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent {
-  constructor(public signupService: SignupService) {}
+  constructor(public authService: AuthService) {}
 
   formSignup!: FormGroup;
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class SignupComponent {
     if (this.formSignup.invalid) {
       return;
     } else {
-      this.signupService.postUser(
+      this.authService.postUser(
         this.formSignup.value.userName,
         this.formSignup.value.email,
         this.formSignup.value.password
