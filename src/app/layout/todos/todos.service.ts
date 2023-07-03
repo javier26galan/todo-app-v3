@@ -21,10 +21,12 @@ export class TodosService {
     private router: Router
   ) {}
 
-  private userId: String = this.authService.getUserId();
+  private userId!: String;
+
   private token: string = this.authService.getToken();
 
   getTodos() {
+    this.userId = this.authService.getUserId();
     this.http
       .get<{ message: string; todos: any }>(
         `${BACKEND_URL}/todos/${this.userId}`
@@ -61,15 +63,12 @@ export class TodosService {
         todo
       )
       .subscribe((responseData) => {
-        console.log('create todo service', responseData);
         this.router.navigate(['/todos']);
       });
   }
 
   deleteTodo(pId:String) {
-    console.log("delete service id", pId);
     this.http.delete(`${BACKEND_URL}/todos/${pId}`).subscribe((response) => {
-      console.log("delete service",response);
       this.router.navigate(['/todos']);
     });
   }

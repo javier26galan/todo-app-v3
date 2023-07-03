@@ -14,12 +14,9 @@ export class TodoComponent {
   todoArr: Todo[] = [];
 
   public todoSubscription!: Subscription;
-  public userIsAuthenticated = false;
 
   constructor(
     public todosService: TodosService,
-    private authService: AuthService,
-    private router: Router
   ) {}
 
   deleteTodo(index: any) {

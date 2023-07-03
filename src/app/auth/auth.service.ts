@@ -41,7 +41,6 @@ export class AuthService {
       password: password,
     };
     this.http.post(BACKEND_URL + '/signup', user).subscribe((response) => {
-      console.log('sigupService response', response);
       this.router.navigate(['/login']);
     });
   };
@@ -61,6 +60,7 @@ export class AuthService {
         const userId = response.userId;
         this.token = token;
         this.userId = userId;
+
         if (token) {
           this.isAuthenticated = true;
           this.authStatusListener.next(true);
