@@ -11,7 +11,6 @@ export const authGuard: CanActivateFn = (
   next: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
-  console.log('guard called');
   const authService = inject(AuthService);
   const router = inject(Router);
   if (authService.isAuthenticated) {

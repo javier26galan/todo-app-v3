@@ -14,6 +14,7 @@ export class AuthService {
   public isAuthenticated = false;
   private token!: string;
   private authStatusListener = new Subject<boolean>();
+  private tokenTimer!: NodeJS.Timer;
   private userId!: string;
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -62,6 +63,11 @@ export class AuthService {
         this.userId = userId;
 
         if (token) {
+          const expiresInDuration = response.expiresIn; //duration of token
+          console.log(expiresInDuration * 100);
+          this.tokenTimer = setTimeout(() => {
+            this.logout();
+          }, expiresInDuration * 100);
           this.isAuthenticated = true;
           this.authStatusListener.next(true);
         }
@@ -73,6 +79,7 @@ export class AuthService {
     this.token = '';
     this.isAuthenticated = false;
     this.authStatusListener.next(false);
+    clearTimeout(this.tokenTimer);// clear the time out if logout manually
     this.router.navigate(['/login']);
   }
 }
