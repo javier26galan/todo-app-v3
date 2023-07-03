@@ -25,7 +25,6 @@ export class TodosService {
   private token: string = this.authService.getToken();
 
   getTodos() {
-    console.log("gola");
     this.http
       .get<{ message: string; todos: any }>(
         `${BACKEND_URL}/todos/${this.userId}`
@@ -44,14 +43,12 @@ export class TodosService {
           };
         })
       ).subscribe((transfordeData)=>{
-        console.log(transfordeData);
         this.todos = transfordeData.todos;
         this.todosUpdated.next({todos: this.todos});
       });
   }
 
   getTodosUpdatedListener(){
-    console.log(this.todosUpdated);
     return this.todosUpdated.asObservable();
   }
 
@@ -69,7 +66,13 @@ export class TodosService {
       });
   }
 
-  updateTodo() {}
+  deleteTodo(pId:String) {
+    console.log("delete service id", pId);
+    this.http.delete(`${BACKEND_URL}/todos/${pId}`).subscribe((response) => {
+      console.log("delete service",response);
+      this.router.navigate(['/todos']);
+    });
+  }
 
-  deleteTodo() {}
+  updateTodo() {}
 }

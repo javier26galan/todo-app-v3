@@ -48,6 +48,7 @@ exports.updateTodo = (req, res, next) => {
 };
 
 exports.deleteTodo = (req, res, next) => {
+  console.log("delete node");
   Todo.deleteOne({ _id: req.params.id })
     .then((result) => {
       if (result.deletedCount > 0) {
