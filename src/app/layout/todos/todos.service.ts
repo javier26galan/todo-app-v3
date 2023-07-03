@@ -13,7 +13,7 @@ const BACKEND_URL = environment.backend;
 })
 export class TodosService {
   private todos: Todo[] = [];
-  private todosUpdated = new Subject<{todos: Todo[]}>();
+  private todosUpdated = new Subject<{ todos: Todo[] }>();
 
   constructor(
     private http: HttpClient,
@@ -44,19 +44,20 @@ export class TodosService {
             }),
           };
         })
-      ).subscribe((transfordeData)=>{
+      )
+      .subscribe((transfordeData) => {
         this.todos = transfordeData.todos;
-        this.todosUpdated.next({todos: this.todos});
+        this.todosUpdated.next({ todos: this.todos });
       });
   }
 
-  getTodosUpdatedListener(){
+  getTodosUpdatedListener() {
     return this.todosUpdated.asObservable();
   }
 
-  createTodo(todoData:any) {
+  createTodo(todoData: any) {
     const todo = todoData;
-    todo.userId = this.userId
+    todo.userId = this.userId;
     this.http
       .post<{ message: string; todo: Todo }>(
         `${BACKEND_URL}/todos/create`,
@@ -67,7 +68,13 @@ export class TodosService {
       });
   }
 
-  deleteTodo(pId:String) {
+  deleteTodo(pId: String) {
+    this.http.delete(`${BACKEND_URL}/todos/${pId}`).subscribe((response) => {
+      this.router.navigate(['/todos']);
+    });
+  }
+
+  doneTodo(pId: String) {
     this.http.delete(`${BACKEND_URL}/todos/${pId}`).subscribe((response) => {
       this.router.navigate(['/todos']);
     });

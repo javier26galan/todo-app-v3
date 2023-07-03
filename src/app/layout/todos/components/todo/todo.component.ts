@@ -30,6 +30,10 @@ export class TodoComponent {
       });
   }
 
+  doneTodo(index:any){
+
+  }
+
   ngOnInit() {
     this.todosService.getTodos();
     this.todoSubscription = this.todosService

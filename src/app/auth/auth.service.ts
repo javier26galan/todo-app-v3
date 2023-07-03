@@ -64,7 +64,6 @@ export class AuthService {
 
         if (token) {
           const expiresInDuration = response.expiresIn; //duration of token
-          console.log(expiresInDuration * 100);
           this.tokenTimer = setTimeout(() => {
             this.logout();
           }, expiresInDuration * 100);

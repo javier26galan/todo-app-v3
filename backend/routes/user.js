@@ -8,8 +8,8 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   console.log("user routes");
+  console.log(req.params);
 })
-
 router.post("/signup", UserController.createUser);
 router.post("/login", UserController.userLogin);
 

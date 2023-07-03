@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
-require("dotenv").config()
+require("dotenv").config();
 
 exports.createUser = async (req, res, next) => {
   const { userName, email, password } = req.body;
@@ -11,6 +11,7 @@ exports.createUser = async (req, res, next) => {
     userName: userName,
     email: email,
     password: hash,
+    todosDone: 0,
   });
   user
     .save()
@@ -47,7 +48,9 @@ exports.userLogin = (req, res, next) => {
             { expiresIn: "1h" }
           );
           console.log(token);
-          res.status(200).json({ token: token, expiresIn: 36000, userId:fetchedUser._id });
+          res
+            .status(200)
+            .json({ token: token, expiresIn: 36000, userId: fetchedUser._id });
         } else {
           res.status(400).json({ message: "Invalid password" });
         }
@@ -56,4 +59,6 @@ exports.userLogin = (req, res, next) => {
     .catch((err) => {
       return res.status(401).json({ message: err });
     });
+
 };
+
