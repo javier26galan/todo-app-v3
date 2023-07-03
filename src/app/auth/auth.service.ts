@@ -11,7 +11,7 @@ const BACKEND_URL = environment.backend + '/user';
   providedIn: 'root',
 })
 export class AuthService {
-  private isAuthenticated = false;
+  public isAuthenticated = false;
   private token!: string;
   private authStatusListener = new Subject<boolean>();
   private userId!: string;
@@ -73,5 +73,6 @@ export class AuthService {
     this.token = '';
     this.isAuthenticated = false;
     this.authStatusListener.next(false);
+    this.router.navigate(['/login']);
   }
 }
