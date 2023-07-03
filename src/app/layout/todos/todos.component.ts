@@ -1,14 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { TodosService } from './todos.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Subscription } from 'rxjs';
+import { Todo } from './todo.model';
 
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.css'],
 })
-export class TodosComponent {
-  todoArr = [];
+export class TodosComponent implements OnInit, OnDestroy {
+  todoArr: Todo[] = [];
 
-  recieveTodos($event: any) {
-    this.todoArr = $event;
+
+  public todoSubscription!: Subscription;
+  public userIsAuthenticated = false;
+  private authStatusSub!: Subscription;
+
+  constructor(
+    public todosService: TodosService,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit() {
+
+    this.userIsAuthenticated = this.authService.getIsAuth();
+    this.authStatusSub = this.authService
+      .getAuthStatusListener()
+      .subscribe((isAuthenticated) => {
+        this.userIsAuthenticated = isAuthenticated;
+      });
+  }
+
+  ngOnDestroy() {
+    this.authStatusSub.unsubscribe();
   }
 }

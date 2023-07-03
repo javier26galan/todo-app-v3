@@ -1,6 +1,5 @@
-<app-todo-form (todoArrEvent)="recieveTodos($event)"></app-todo-form>
-<div class="todos-content" >
+<div class="todos-content" *ngIf="userIsAuthenticated">
 
-  <app-todo *ngFor="let todo of todoArr" [todo]="todo"></app-todo>
+  <router-outlet></router-outlet>
 
 </div>

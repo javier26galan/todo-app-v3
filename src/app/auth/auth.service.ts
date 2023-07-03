@@ -14,6 +14,7 @@ export class AuthService {
   private isAuthenticated = false;
   private token!: string;
   private authStatusListener = new Subject<boolean>();
+  private userId!: string;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -21,7 +22,15 @@ export class AuthService {
     return this.token;
   }
 
-  getAuthStatusListenner(){
+  getUserId(): string {
+    return this.userId;
+  }
+
+  getIsAuth() {
+    return this.isAuthenticated;
+  }
+
+  getAuthStatusListener() {
     return this.authStatusListener;
   }
 
@@ -49,11 +58,20 @@ export class AuthService {
       )
       .subscribe((response) => {
         const token = response.token;
+        const userId = response.userId;
         this.token = token;
-        console.log(response);
-        this.isAuthenticated = true;
-        this.authStatusListener.next(true)
-        this.router.navigate(['/']);
+        this.userId = userId;
+        if (token) {
+          this.isAuthenticated = true;
+          this.authStatusListener.next(true);
+        }
+        this.router.navigate(['/todos']);
       });
   };
+
+  logout() {
+    this.token = '';
+    this.isAuthenticated = false;
+    this.authStatusListener.next(false);
+  }
 }

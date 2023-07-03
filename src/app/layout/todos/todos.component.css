@@ -7,12 +7,7 @@ app-todo-form{
   margin-top: 3em;
 }
 
-app-todo{
-  display:flex;
-  justify-content: center;
-  align-content: center;
-  margin-top: 3em;
-}
+
 
 .todos-content{
   display:flex;
@@ -21,3 +16,4 @@ app-todo{
   gap: 1em;
   flex-wrap: wrap;
 }
+

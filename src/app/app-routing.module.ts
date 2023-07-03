@@ -5,7 +5,7 @@ import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'todos',
     loadChildren: () =>
       import('./layout/todos/todos.module').then((m) => m.TodosModule),
   },

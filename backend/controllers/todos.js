@@ -5,7 +5,7 @@ exports.getTodos = (req, res, next) => {
     console.log(todos);
     res.status(200).json({ message: "todos fetched successfully", todos: todos });
   }).catch((error) => {
-    res.estatus(500).json({ message:"Erros fetching todos", error: error.message });
+    res.status(500).json({ message:"Erros fetching todos", error: error.message });
   });
 };
 

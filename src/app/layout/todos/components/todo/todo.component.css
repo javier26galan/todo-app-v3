@@ -1,3 +1,12 @@
 .text{
   color: #fff;
 }
+
+.todo-container{
+  display:flex;
+  justify-content:center;
+  align-content:center;
+  gap: 1em;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}

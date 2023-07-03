@@ -7,7 +7,10 @@
  <button *ngIf="!userIsAuthenticated" mat-raised-button color="warn" routerLink="/login">
    <span>Login</span>
  </button>
- <button *ngIf="userIsAuthenticated" mat-raised-button color="warn" routerLink="/login">
+ <button *ngIf="userIsAuthenticated" mat-raised-button color="warn" routerLink="/todos/create">
+   <span>Create</span>
+ </button>
+ <button *ngIf="userIsAuthenticated" mat-raised-button color="warn" (click)="onLogout()" routerLink="/login">
    <span>Logout</span>
  </button>
 </mat-toolbar>

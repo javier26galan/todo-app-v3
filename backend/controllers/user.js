@@ -36,7 +36,6 @@ exports.userLogin = (req, res, next) => {
         return res.status(401).json({ message: "User did not exist" });
       }
       fetchedUser = user;
-      console.log("secreto",process.env.JWT_KEY);
       bcrypt.compare(req.body.password, fetchedUser.password).then((result) => {
         if (result) {
           const token = jwt.sign(
@@ -47,6 +46,7 @@ exports.userLogin = (req, res, next) => {
             process.env.JWT_KEY,
             { expiresIn: "1h" }
           );
+          console.log(token);
           res.status(200).json({ token: token, expiresIn: 36000, userId:fetchedUser._id });
         } else {
           res.status(400).json({ message: "Invalid password" });

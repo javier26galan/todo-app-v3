@@ -5,6 +5,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { TodosService } from '../../todos.service';
 
 @Component({
   selector: 'app-todo-form',
@@ -13,8 +14,9 @@ import {
 })
 export class TodoFormComponent implements OnInit {
   form!: FormGroup;
-  todoArr: any[] = [];
-  @Output() todoArrEvent = new EventEmitter<any[]>();
+
+  constructor(public todosService: TodosService) {}
+
   ngOnInit(): void {
     this.form = new FormGroup({
       title: new FormControl(''),
@@ -27,8 +29,7 @@ export class TodoFormComponent implements OnInit {
       title: this.form.value.title,
       content: this.form.value.content,
     };
-    this.todoArr.push(todo);
-    this.todoArrEvent.emit(this.todoArr);
+    this.todosService.createTodo(todo);
     this.form.reset();
   }
 }

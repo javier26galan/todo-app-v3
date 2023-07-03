@@ -1,8 +1,10 @@
-<mat-card>
-  <mat-card-header class="text"><mat-card-title>{{this.todo.title}}</mat-card-title></mat-card-header>
-  <mat-card-content class="text">{{this.todo.content}}</mat-card-content>
-  <mat-card-actions>
-    <button mat-button color="accent">Accent</button>
-    <button mat-button color="warn">Warn</button>
-  </mat-card-actions>
-</mat-card>
+<div class="todo-container">
+  <mat-card *ngFor="let todo of todoArr">
+    <mat-card-header class="text"><mat-card-title>{{this.todo.title}}</mat-card-title></mat-card-header>
+    <mat-card-content class="text">{{this.todo.content}}</mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="accent">Accent</button>
+      <button mat-button color="warn">Warn</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
