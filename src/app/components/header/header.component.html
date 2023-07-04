@@ -7,8 +7,8 @@
  <button *ngIf="!userIsAuthenticated" mat-raised-button color="warn" routerLink="/login">
    <span>Login</span>
  </button>
- <button *ngIf="userIsAuthenticated" mat-raised-button color="primary" routerLink="/pixela">
-   <span>Pixela</span>
+ <button *ngIf="userIsAuthenticated" mat-raised-button color="basic" routerLink="/todos">
+   <span>Todos</span>
  </button>
  <button *ngIf="userIsAuthenticated" mat-raised-button color="accent" routerLink="/todos/create">
    <span>Create</span>

@@ -19,13 +19,6 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
-
-  {
-    path: 'pixela',
-    loadChildren: () =>
-      import('./layout/pixela/pixela.module').then((m) => m.PixelaModule),
-    canActivate: [authGuard],
-  },
 ];
 
 @NgModule({
