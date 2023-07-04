@@ -2,7 +2,6 @@ const Todo = require("../models/todo.model");
 
 exports.getTodos = (req, res, next) => {
   Todo.find({ userId: req.params.id }).then((todos) => {
-    console.log(todos);
     res.status(200).json({ message: "todos fetched successfully", todos: todos });
   }).catch((error) => {
     res.status(500).json({ message:"Erros fetching todos", error: error.message });
@@ -25,7 +24,6 @@ exports.createTodo = (req, res, next) => {
         message: error,
       });
     });
-  console.log(todo);
 };
 
 exports.updateTodo = (req, res, next) => {
@@ -33,7 +31,6 @@ exports.updateTodo = (req, res, next) => {
   const todo = new Todo({ _id: req.params.id, title, content, userId });
   Todo.updateOne({ _id: req.params.id }, todo)
     .then((result) => {
-      console.log(result);
       if (result.modifiedCount > 0) {
         res.status(200).json({ message: "Todo Updated successfully" });
       } else {
@@ -43,8 +40,6 @@ exports.updateTodo = (req, res, next) => {
     .catch((error) => {
       res.status(500).json({ message: "Error updating Todo", error: error });
     });
-
-  console.log(todo);
 };
 
 exports.deleteTodo = (req, res, next) => {

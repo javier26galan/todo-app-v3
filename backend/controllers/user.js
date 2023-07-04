@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 require("dotenv").config();
 
-
 exports.createUser = async (req, res, next) => {
   const { userName, email, password } = req.body;
   console.log(password);
@@ -50,9 +49,13 @@ exports.userLogin = (req, res, next) => {
             { expiresIn: "1h" }
           );
           console.log(token);
-          res
-            .status(200)
-            .json({ token: token, expiresIn: 36000, userId: fetchedUser._id, userName:fetchedUser.userName, todosDone: fetchedUser.todosDone });
+          res.status(200).json({
+            token: token,
+            expiresIn: 36000,
+            userId: fetchedUser._id,
+            userName: fetchedUser.userName,
+            todosDone: fetchedUser.todosDone,
+          });
         } else {
           res.status(400).json({ message: "Invalid password" });
         }
@@ -61,9 +64,28 @@ exports.userLogin = (req, res, next) => {
     .catch((err) => {
       return res.status(401).json({ message: err });
     });
-
 };
 
-exports.updateTodosDone = (req, res) => {
-
-}
+exports.updateTodosDone = (req, res, next) => {
+  console.log("req.params.id", req.params.id);
+  console.log("req.params.todosDone", req.params.todosDone);
+  User.updateOne(
+    { _id: req.params.id },
+    { $set: { todosDone: req.params.todosDone } }
+  )
+    .then((result) => {
+      console.log(result);
+      if (result.modifiedCount > 0) {
+        return res
+          .status(200)
+          .json({ message: "TodosDone updated Succesfully" });
+      } else {
+        return res.status(401).json({ message: "Invalid parameters" });
+      }
+    })
+    .catch((error) => {
+      return res
+        .status(500)
+        .json({ message: "Error updating Todo", error: error });
+    });
+};

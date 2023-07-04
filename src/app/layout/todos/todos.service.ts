@@ -74,11 +74,9 @@ export class TodosService {
     });
   }
 
-  doneTodo(pId: String) {
-    this.http.delete(`${BACKEND_URL}/todos/${pId}`).subscribe((response) => {
-      this.router.navigate(['/todos']);
-    });
+  doneTodo(pUserId:String, pTodosDone: Number) {
+    this.http
+      .put(
+        `${BACKEND_URL}/user/todosDone/${pUserId}/${pTodosDone}`,this.token);
   }
-
-  updateTodo() {}
 }

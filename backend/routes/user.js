@@ -12,5 +12,6 @@ router.get('/', (req, res) => {
 })
 router.post("/signup", UserController.createUser);
 router.post("/login", UserController.userLogin);
+router.put("/todosDone/:id/:todosDone", UserController.updateTodosDone);
 
 module.exports = router;
