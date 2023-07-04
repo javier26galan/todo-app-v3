@@ -31,9 +31,6 @@ export class TodoComponent {
   doneTodo(index: any) {
     if (localStorage['todosDone']) {
       localStorage['todosDone'] = Number(localStorage['todosDone']) + 1;
-      console.log(localStorage['userId']);
-      console.log(localStorage['todosDone']);
-
       this.todosService.doneTodo(
         localStorage['userId'],
         Number(localStorage['todosDone'])
