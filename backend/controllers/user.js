@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 require("dotenv").config();
 
+
 exports.createUser = async (req, res, next) => {
   const { userName, email, password } = req.body;
   console.log(password);
@@ -37,6 +38,7 @@ exports.userLogin = (req, res, next) => {
         return res.status(401).json({ message: "User did not exist" });
       }
       fetchedUser = user;
+      console.log(fetchedUser);
       bcrypt.compare(req.body.password, fetchedUser.password).then((result) => {
         if (result) {
           const token = jwt.sign(
@@ -50,7 +52,7 @@ exports.userLogin = (req, res, next) => {
           console.log(token);
           res
             .status(200)
-            .json({ token: token, expiresIn: 36000, userId: fetchedUser._id });
+            .json({ token: token, expiresIn: 36000, userId: fetchedUser._id, userName:fetchedUser.userName, todosDone: fetchedUser.todosDone });
         } else {
           res.status(400).json({ message: "Invalid password" });
         }
@@ -62,3 +64,6 @@ exports.userLogin = (req, res, next) => {
 
 };
 
+exports.updateTodosDone = (req, res) => {
+
+}

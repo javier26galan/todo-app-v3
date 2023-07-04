@@ -7,7 +7,7 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #fff;
+  background-color: #282A3A;
   background-image: url("https://www.transparenttextures.com/patterns/escheresque.png");
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }

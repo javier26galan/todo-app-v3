@@ -23,8 +23,11 @@ export class TodosComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    console.log(this.todoArr);
 
     this.userIsAuthenticated = this.authService.getIsAuth();
+    console.log(this.userIsAuthenticated);
+
     this.authStatusSub = this.authService
       .getAuthStatusListener()
       .subscribe((isAuthenticated) => {

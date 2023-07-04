@@ -21,12 +21,12 @@ export class TodosService {
     private router: Router
   ) {}
 
-  private userId!: String;
+  private userId!: any;
 
   private token: string = this.authService.getToken();
 
   getTodos() {
-    this.userId = this.authService.getUserId();
+    this.userId = localStorage.getItem('userId');
     this.http
       .get<{ message: string; todos: any }>(
         `${BACKEND_URL}/todos/${this.userId}`

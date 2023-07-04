@@ -8,11 +8,12 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  userIsAuthenticated: boolean = false
+  userIsAuthenticated: boolean = false;
   private authListenerSubs!: Subscription;
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
+    this.userIsAuthenticated = this.authService.getIsAuth()
     this.authListenerSubs = this.authService
       .getAuthStatusListener()
       .subscribe((isAuthenticated) => {
@@ -20,10 +21,12 @@ export class HeaderComponent implements OnInit {
       });
   }
 
-  onLogout(){
+  onLogout() {
     this.authService.logout();
     this.userIsAuthenticated = false;
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.authListenerSubs.unsubscribe();
+  }
 }
