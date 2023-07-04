@@ -77,6 +77,8 @@ export class TodosService {
   doneTodo(pUserId:String, pTodosDone: Number) {
     this.http
       .put(
-        `${BACKEND_URL}/user/todosDone/${pUserId}/${pTodosDone}`,this.token);
+        `${BACKEND_URL}/user/todosDone/${pUserId}/${pTodosDone}`,this.token)
+      .subscribe((response) => {
+      });
   }
 }
