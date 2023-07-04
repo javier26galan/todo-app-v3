@@ -61,8 +61,6 @@ export class AuthService {
       }>(BACKEND_URL + '/login', user)
       .subscribe((response) => {
         const token = response.token;
-        console.log(response);
-
         const userId = response.userId;
         const userName = response.userName;
         const todosDone = response.todosDone.toString();

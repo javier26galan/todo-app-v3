@@ -8,6 +8,6 @@ footer {
   height: 2.5rem;
 }
 
-footer p {
-  color: #9681EB;
+.example-spacer {
+  flex: 1 1 auto;
 }
