@@ -15,12 +15,10 @@ export class TodoComponent {
 
   public todoSubscription!: Subscription;
 
-  constructor(
-    public todosService: TodosService,
-  ) {}
+  constructor(public todosService: TodosService) {}
 
   deleteTodo(index: any) {
-    const id:String = this.todoArr[index].id;
+    const id: String = this.todoArr[index].id;
     this.todosService.deleteTodo(id);
     this.todosService.getTodos();
     this.todoSubscription = this.todosService
@@ -30,8 +28,13 @@ export class TodoComponent {
       });
   }
 
-  doneTodo(index:any){
-
+  doneTodo(index: any) {
+    if (localStorage['todosDone']) {
+      localStorage['todosDone'] = Number(localStorage['todosDone']) + 1;
+      this.deleteTodo(index);
+    } else {
+      console.log('you need to login');
+    }
   }
 
   ngOnInit() {

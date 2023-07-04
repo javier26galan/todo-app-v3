@@ -89,6 +89,7 @@ export class AuthService {
     // check if the token still valid
     const now = new Date();
     const expiresIn = authInformation!.expirationDate.getTime() - now.getTime();
+    console.log(expiresIn);
     if (expiresIn > 0) {
       this.token = authInformation!.token;
       this.isAuthenticated = true;
