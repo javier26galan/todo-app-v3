@@ -9,7 +9,7 @@ const routes: Routes = [
     path: 'todos',
     loadChildren: () =>
       import('./layout/todos/todos.module').then((m) => m.TodosModule),
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
   {
     path: 'signup',
@@ -18,6 +18,13 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+
+  {
+    path: 'pixela',
+    loadChildren: () =>
+      import('./layout/pixela/pixela.module').then((m) => m.PixelaModule),
+    canActivate: [authGuard],
   },
 ];
 
